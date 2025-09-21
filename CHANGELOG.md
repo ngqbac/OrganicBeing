@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.1.1] - 2025-09-21
+- Implemented Auto Tag on Version Change
+
 ## [1.1.0] - 2025-09-21
 
 ### ⚙️ Structure & Organization
