@@ -19,7 +19,7 @@ Ideal for gameplay systems, reusable logic, and efficient runtime objects.
 ## 1. Install via Git URL (Recommended)
 
 <details>
-### Option A — Add to manifest.json
+<summary> Option A — Add to <code>manifest.json</code></summary>
 
 Open `Packages/manifest.json` and add:
 
@@ -30,7 +30,7 @@ Open `Packages/manifest.json` and add:
 </details>
 
 <details>
-### Option B — Use Unity Package Manager UI
+<summary> Option B — Use Unity Package Manager UI</summary>
 
 1. In Unity Editor, go to **Window → Package Manager**  
 2. Click the **+** (plus) button → **Add package from Git URL...**  
@@ -48,8 +48,7 @@ Open `Packages/manifest.json` and add:
 
 # Setup & Configuration
 
-1. After installing, create the configuration asset:  
-**Tools → OrganicBeing → Create Config Asset**  
+1. After installing, create the configuration asset: **Tools → OrganicBeing → Create Config Asset**  
    This will generate `Assets/Resources/OrganicConfig.asset`.
 
 2. Open `OrganicConfig` in Inspector to adjust:  
