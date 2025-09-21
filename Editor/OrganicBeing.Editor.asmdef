@@ -1,0 +1,10 @@
+{
+  "name": "OrganicBeing.Editor",
+  "references": [
+    "OrganicBeing"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "rootNamespace": "OrganicBeing.Editor"
+}
