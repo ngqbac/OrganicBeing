@@ -1,111 +1,196 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Latest Version](https://img.shields.io/github/v/tag/ngqbac/OrganicBeing)](https://github.com/ngqbac/OrganicBeing) [![Unity Version](https://img.shields.io/badge/Unity-2022.3%20LTS-blue)](https://unity.com/releases/2022-3)  
-
----
-# Overview
-
-OrganicBeing is a Unity package that enables:
-
-- self‑aware objects via lifecycle (`Grow`, `IsReady`, `OnRecycle`)  
-- safe execution of code only when ready (`WhenReady()`)  
-- object pooling with configurable limits to manage memory  
-- flexible logging via flag‑based log levels  
-
-Ideal for gameplay systems, reusable logic, and efficient runtime objects.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Latest Version](https://img.shields.io/github/v/tag/ngqbac/OrganicBeing)](https://github.com/ngqbac/OrganicBeing) [![Unity Version](https://img.shields.io/badge/Unity-2022.3%20LTS-blue)](https://unity.com/releases/2022-3)
 
 ---
 
-# Installation
+# OrganicBeing
 
-## 1. Install via Git URL (Recommended)
+**OrganicBeing** is a Unity package designed for lifecycle-driven, memory-efficient game objects that can grow, recycle, and integrate into object pools—perfect for gameplay logic and reusable systems.
+
+---
+
+## ✨ Features
+
+- `Grow()` and `WhenReady()` lifecycle for lazy initialization
+- `OnRecycle()` for cleanup and reuse
+- Generic `OrganicHost<T>` and `MonoOrganicHost<T>` for data-bound logic
+- Seamless **MonoBehaviour** integration with composition or inheritance
+- Configurable `OrganicPool<T>` with pooling limits
+- Logging via flag-based log levels
+- Clean folder-based architecture (Core, Integration, Utilities, Editor)
+
+---
+
+## 📦 Installation
+
+### Option A — Add to `manifest.json`
 
 <details>
-<summary> Option A — Add to <code>manifest.json</code></summary>
-
-Open `Packages/manifest.json` and add:
+<summary>Click to expand</summary>
 
 ```json
-"com.bacnq.organicbeing": "https://github.com/ngqbac/OrganicBeing.git"
+{
+  "dependencies": {
+    "com.bacnq.organicbeing": "https://github.com/ngqbac/OrganicBeing.git"
+  }
+}
 ```
 
 </details>
 
-<details>
-<summary> Option B — Use Unity Package Manager UI</summary>
+### Option B — Unity Package Manager (UPM)
 
-1. In Unity Editor, go to **Window → Package Manager**  
-2. Click the **+** (plus) button → **Add package from Git URL...**  
+<details>
+<summary>Click to expand</summary>
+
+1. In Unity: **Window → Package Manager**  
+2. Click **+** → **Add package from Git URL**  
 3. Paste:
 
    ```
    https://github.com/ngqbac/OrganicBeing.git
    ```
 
-4. Click **Add**
-
 </details>
 
 ---
 
-# Setup & Configuration
+## ⚙️ Setup & Configuration
 
-1. After installing, create the configuration asset: **Tools → OrganicBeing → Create Config Asset**  
-   This will generate `Assets/Resources/OrganicConfig.asset`.
+1. After installation, create the config asset:  
+   **Tools → OrganicBeing → Create Config Asset**
 
-2. Open `OrganicConfig` in Inspector to adjust:  
-   - `DefaultMaxPoolSize` — max objects held per pool  
-   - `LogLevelFlags` — which log types are enabled (Info, Warning, Error)
+2. This generates `Assets/Resources/OrganicConfig.asset`, where you can adjust:
+   - `DefaultMaxPoolSize`
+   - `LogLevelFlags`
 
 ---
 
-# Usage Example
+## 🚀 Usage
 
-## Creating a Reusable OrganicObject
+### Create a Reusable OrganicObject
 
 ```csharp
-using OrganicBeing;
-
-public class MyReusable : OrganicObject
+public class EnemyLogic : OrganicObject
 {
-    protected override void OnGrow()
-    {
-        // Initialization logic
-    }
+    protected override void OnGrow() { /* Init logic */ }
 
-    public override void OnRecycle()
-    {
-        // Reset state here
-    }
+    public override void OnRecycle() { /* Cleanup */ }
 }
 ```
 
-## Using the Pool in MonoBehaviour
+### Use with Pool
 
 ```csharp
-var pool = new OrganicPool<MyReusable>();
-
-var obj = pool.Get();
-obj.WhenReady(() => {
-    // Safe to use
-});
-pool.Return(obj);
+var pool = new OrganicPool<EnemyLogic>();
+var logic = pool.Get();
+logic.WhenReady(() => Debug.Log("Ready!"));
+pool.Return(logic);
 ```
 
 ---
 
-# API Reference
+## 🧠 MonoBehaviour Integration
 
-| Class / Interface       | Key Methods / Properties                             |
-|-------------------------|------------------------------------------------------|
-| `OrganicObject`         | `Grow()`, `IsReady`, `WhenReady(...)`, `OnRecycle()` |
-| `OrganicPool<T>`        | `Get()`, `Return()`, uses `OrganicSettings.MaxPoolSize` |
-| `OrganicSettings`       | `MaxPoolSize`, `LogLevel` from `OrganicConfig`      |
-| `OrganicLog`            | `Info()`, `Warn()`, `Error()`, controlled by flags   |
+### Option A — Composition (Recommended)
+
+```csharp
+public class Enemy : MonoBehaviour, IOrganicHost<EnemyLogic>
+{
+    public EnemyLogic Organic => _logic ??= new EnemyLogic();
+    private EnemyLogic _logic;
+
+    void Start()
+    {
+        Organic.Grow();
+        Organic.WhenReady(() => Debug.Log("Initialized!"));
+    }
+
+    void OnDestroy() => Organic.OnRecycle();
+}
+```
+
+### Option B — Inheritance
+
+```csharp
+public class Enemy : MonoOrganicHost<EnemyData>
+{
+    protected override void OnGrow() { /* Init */ }
+
+    protected override void OnAbsorb() => Debug.Log(Data.id);
+
+    public override void OnRecycle() { /* Clean */ }
+}
+```
 
 ---
 
-# Contributing
+## 🧪 Advanced: OrganicObject with Data
 
-Contributions are welcome! Feel free to open issues or pull requests.  
-Please follow code style, add tests where needed, and update README for any new feature.
+```csharp
+public class GemData
+{
+    public string id;
+    public int level;
+}
+
+public class OrganicGem : OrganicHost<GemData>
+{
+    protected override void OnGrow() { /* Init */ }
+
+    protected override void OnAbsorb() => Debug.Log(Data.id);
+
+    public override void OnRecycle() { /* Cleanup */ }
+}
+```
 
 ---
+
+## 📚 API Reference
+
+| Component                 | Description                                           |
+|--------------------------|-------------------------------------------------------|
+| `OrganicObject`          | Core lifecycle class (`Grow`, `OnRecycle`)            |
+| `OrganicHost<T>`         | Generic with data handling (`Absorb`, `Data`)         |
+| `MonoOrganic`            | MonoBehaviour wrapper for OrganicObject               |
+| `MonoOrganicHost<T>`     | MonoBehaviour + Data + Organic lifecycle              |
+| `OrganicPool<T>`         | Pooled management, supports prefab spawning           |
+| `OrganicSettings`        | Access config values from anywhere                    |
+| `OrganicLog`             | Flag-driven log helper (`Info`, `Warn`, `Error`)      |
+| `OrganicConfig`          | ScriptableObject to set pool size and log levels      |
+| `IOrganic`, `IOrganicHost<T>` | Interfaces for lifecycle and data integration      |
+
+---
+
+## 🗂 Folder Structure & Namespaces
+
+| Folder         | Namespace              | Purpose                              |
+|----------------|------------------------|--------------------------------------|
+| `Core`         | `OrganicBeing.Core`    | Core lifecycle, interfaces, pooling  |
+| `Integration`  | `OrganicBeing.Integration` | MonoBehaviour integration         |
+| `Utilities`    | `OrganicBeing.Utilities` | Logging, config, settings           |
+| `Editor`       | `OrganicBeing.Editor`  | Editor-only menu and config tools    |
+
+---
+
+## 🧩 Assembly Definitions
+
+| Assembly                 | Description                          |
+|--------------------------|--------------------------------------|
+| `OrganicBeing`           | Core runtime logic                   |
+| `OrganicBeing.Editor`    | Unity editor integration             |
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! Please:
+
+- Follow the project's C# coding style
+- Add appropriate tests and examples
+- Update the documentation if needed
+
+---
+
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE).

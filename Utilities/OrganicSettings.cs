@@ -1,7 +1,6 @@
-using OrganicBeing.Utilities;
 using UnityEngine;
 
-namespace OrganicBeing
+namespace OrganicBeing.Utilities
 {
     public static class OrganicSettings
     {

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace OrganicBeing
+namespace OrganicBeing.Utilities
 {
     [Flags]
     public enum EOrganicLogLevel

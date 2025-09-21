@@ -1,6 +1,6 @@
 using System;
 
-namespace OrganicBeing
+namespace OrganicBeing.Core
 {
     public abstract class OrganicObject : IOrganic
     {

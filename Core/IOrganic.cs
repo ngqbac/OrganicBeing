@@ -1,4 +1,4 @@
-namespace OrganicBeing
+namespace OrganicBeing.Core
 {
     public interface IOrganic
     {

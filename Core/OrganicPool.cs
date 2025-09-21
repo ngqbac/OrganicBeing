@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using OrganicBeing.Utilities;
 
-namespace OrganicBeing
+namespace OrganicBeing.Core
 {
     public class OrganicPool<T> where T : OrganicObject, new()
     {

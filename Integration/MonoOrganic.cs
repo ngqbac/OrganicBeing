@@ -1,7 +1,8 @@
 using System;
+using OrganicBeing.Core;
 using UnityEngine;
 
-namespace OrganicBeing
+namespace OrganicBeing.Integration
 {
     public abstract class MonoOrganic: MonoBehaviour, IOrganic
     {
