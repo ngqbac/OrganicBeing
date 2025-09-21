@@ -24,7 +24,7 @@ Ideal for gameplay systems, reusable logic, and efficient runtime objects.
 Open `Packages/manifest.json` and add:
 
 ```json
-"com.bacnq.organicbeing": "https://github.com/ngqbac/OrganicBeing"
+"com.bacnq.organicbeing": "https://github.com/ngqbac/OrganicBeing.git"
 ```
 
 </details>
@@ -37,7 +37,7 @@ Open `Packages/manifest.json` and add:
 3. Paste:
 
    ```
-   https://github.com/ngqbac/OrganicBeing
+   https://github.com/ngqbac/OrganicBeing.git
    ```
 
 4. Click **Add**
