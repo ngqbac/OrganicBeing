@@ -1,7 +1,7 @@
 using System;
 using OrganicBeing.Core;
 
-namespace OrganicBeing
+namespace OrganicBeing.Utilities
 {
     public static class OrganicExtensions
     {
