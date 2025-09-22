@@ -1,3 +1,4 @@
+#if ORGANIC_UNITASK
 using System;
 using Cysharp.Threading.Tasks;
 using OrganicBeing.Core;
@@ -34,3 +35,4 @@ namespace OrganicBeing.Integration.Async
         }
     }
 }
+#endif

@@ -1,12 +1,15 @@
 {
 	"name": "OrganicBeing.UniTask",
-	"rootNamespace": "OrganicBeing.Integration.Async",
+	"rootNamespace": "OrganicBeing.Integration.UniTask",
 	"references": [
 		"OrganicBeing",
 		"UniTask"
 	],
-	"includePlatforms": [],
-	"excludePlatforms": [],
-	"allowUnsafeCode": false,
-	"overrideReferences": false
+	"versionDefines": [
+		{
+			"name": "com.cysharp.unitask",
+			"expression": "1.0.0",
+			"define": "ORGANIC_UNITASK"
+		}
+	]
 }
