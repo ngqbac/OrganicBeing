@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'Packages/com.bacnq.organicbeing/package.json'
+      - 'package.json'
 
 jobs:
   tag:
