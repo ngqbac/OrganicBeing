@@ -1,6 +1,6 @@
 using OrganicBeing.Core;
 
-namespace OrganicBeing.Integration
+namespace OrganicBeing.Integration.Unity
 {
     public abstract class MonoOrganicHost<T> : MonoOrganic, IOrganicHost<T>
     {
