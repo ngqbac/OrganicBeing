@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.2.0] - 2025-09-22
+
+### ✨ Features
+
+- Added **UniTask async support**:
+  - `WhenReadyAsync()` extension methods using UniTask
+  - Overloads for `Func<T>` and `Action`
+- UniTask integration is **optional** using `versionDefines` and separate asmdef
+- Improved developer ergonomics and IDE support with simplified structure
+
+### 🔧 Improvements
+
+- Split async support into `Integration/UniTask/OrganicAsync.cs`
+- Refined `.asmdef` setup to reduce coupling
+- Improved pool and lifecycle stability in edge cases
+- Updated documentation and examples
+
+### 🐛 Fixes
+
+- Fixed incorrect or missing references causing IDE errors
+- Prevented UniTask references from compiling if not installed
+- Corrected inconsistent namespace usage across folders
+
+---
+
 ## [1.1.1] - 2025-09-21
 - Implemented Auto Tag on Version Change
 
