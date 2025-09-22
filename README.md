@@ -8,20 +8,15 @@
 
 ## Features
 
--  **Self-Aware Object Lifecycle****  
-  `IOrganic` interface with `Grow`, `Wither`, and `IsReady` for lifecycle management.
+-  **Self-Aware Object Lifecycle**: `IOrganic` interface with `Grow`, `Wither`, and `IsReady` for lifecycle management.
 
-- **Automatic Pooling**  
-  Organic objects are pooled by default to reduce GC overhead.
+- **Automatic Pooling**: Organic objects are pooled by default to reduce GC overhead.
 
-- **Composable Behaviors**  
-  Use `IOrganicAddon` to add modular behaviors or traits.
+- **Composable Behaviors**: Use `IOrganicAddon` to add modular behaviors or traits.
 
-- **Async Readiness API**  
-  Use `OrganicAsync.WhenReadyAsync()` to await readiness (supports `UniTask` if installed).
+- **Async Readiness API**: Use `OrganicAsync.WhenReadyAsync()` to await readiness (supports `UniTask` if installed).
 
-- **Minimal Dependencies**  
-  UniTask integration is optional using `versionDefines`.
+- **Minimal Dependencies**: UniTask integration is optional using `versionDefines`.
 
 ---
 
