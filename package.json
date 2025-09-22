@@ -8,5 +8,8 @@
     "name": "bacnq",
     "email": "ngqbac@gmail.com"
   },
-  "keywords": ["organic", "object", "pool", "lifecycle", "self-aware"]
+  "keywords": ["organic", "object", "pool", "lifecycle", "self-aware"],
+  "dependencies": {
+    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask"
+  }
 }

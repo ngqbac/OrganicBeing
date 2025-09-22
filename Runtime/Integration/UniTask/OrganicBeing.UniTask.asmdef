@@ -1,0 +1,12 @@
+{
+	"name": "OrganicBeing.UniTask",
+	"rootNamespace": "OrganicBeing.Integration.Async",
+	"references": [
+		"OrganicBeing",
+		"UniTask"
+	],
+	"includePlatforms": [],
+	"excludePlatforms": [],
+	"allowUnsafeCode": false,
+	"overrideReferences": false
+}
