@@ -6,9 +6,6 @@ on:
     paths:
       - 'Packages/com.bacnq.organicbeing/package.json'
 
-permissions:
-  contents: write
-
 jobs:
   tag:
     runs-on: ubuntu-latest
