@@ -10,9 +10,9 @@ namespace OrganicBeing.Core
             set => Absorb(value);
         }
 
-        public void Absorb(T value) => WhenReady(() =>
+        public void Absorb(T data) => WhenReady(() =>
         {
-            _data = value;
+            _data = data;
             OnAbsorb();
         });
 
