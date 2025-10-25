@@ -1,11 +1,11 @@
 {
-  "name": "com.bacnq.organicbeing",
+  "name": "com.norty.organicbeing",
   "displayName": "OrganicBeing",
   "version": "1.2.0",
   "unity": "2022.3",
   "description": "Self-aware, self-initializing, composable objects with lifecycle and pooling.",
   "author": {
-    "name": "bacnq",
+    "name": "NortyGuy",
     "email": "ngqbac@gmail.com"
   },
   "keywords": ["organic", "object", "pool", "lifecycle", "self-aware"]
