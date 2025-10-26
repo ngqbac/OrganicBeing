@@ -1,6 +1,6 @@
 {
 	"name": "OrganicBeing.UniTask",
-	"rootNamespace": "OrganicBeing.Integration.UniTask",
+	"rootNamespace": "OrganicBeing.Integration.Async",
 	"references": [
 		"OrganicBeing",
 		"UniTask"
